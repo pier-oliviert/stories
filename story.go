@@ -3,10 +3,10 @@ package main
 import "encoding/json"
 
 type Story struct {
-  Severity int
-	Message string
-  Timestamp string
-  Data map[string]string
+	Severity  int
+	Message   string
+	Timestamp string
+	Data      map[string]string
 }
 
 func NewStoryFromJSON(bytes []byte) (*Story, error) {
@@ -19,4 +19,3 @@ func NewStoryFromJSON(bytes []byte) (*Story, error) {
 
 	return &story, nil
 }
-

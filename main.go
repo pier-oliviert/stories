@@ -19,19 +19,19 @@ func main() {
 
 	go theEnd(listener)
 
-  go func() {
-    clock := time.Tick(1 * time.Second)
-    var m runtime.MemStats
-    for range clock {
-      stories := queue.Collect()
-      runtime.ReadMemStats(&m)
-      log.Print("Messages that would be processed: ", len(stories))
-    }
-  }()
+	go func() {
+		clock := time.Tick(1 * time.Second)
+		var m runtime.MemStats
+		for range clock {
+			stories := queue.Collect()
+			runtime.ReadMemStats(&m)
+			log.Print("Messages that would be processed: ", len(stories))
+		}
+	}()
 
-  for {
-    process(listener.Accept())
-  }
+	for {
+		process(listener.Accept())
+	}
 }
 
 func process(c net.Conn, err error) (*Story, error) {
@@ -39,34 +39,34 @@ func process(c net.Conn, err error) (*Story, error) {
 		log.Print("Connection error: ", err)
 	}
 
-  defer c.Close()
+	defer c.Close()
 
 	buf := make([]byte, 2048)
-  nr, err := c.Read(buf)
+	nr, err := c.Read(buf)
 
 	if err != nil {
 		return nil, err
 	}
 
-  story, err := NewStoryFromJSON(buf[:nr])
+	story, err := NewStoryFromJSON(buf[:nr])
 
 	if err != nil {
 		log.Print("Couldn't parse the following Story: ", string(buf), err)
-    return nil, err
+		return nil, err
 	}
 
 	// log.Print("Message: ", story)
 
-  queue.Add(story)
+	queue.Add(story)
 
-  return story, nil
+	return story, nil
 }
 
 func theEnd(l net.Listener) {
-  channel := make(chan os.Signal, 1)
+	channel := make(chan os.Signal, 1)
 	signal.Notify(channel, os.Interrupt, syscall.SIGTERM)
 
-  <-channel
-  l.Close()
+	<-channel
+	l.Close()
 	os.Exit(0)
 }
