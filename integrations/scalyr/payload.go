@@ -2,7 +2,7 @@ package scalyr
 
 import (
 	"encoding/json"
-	"github.com/pothibo/stories/stories"
+	"github.com/convertkit/stories/stories"
 )
 
 type Payload struct {

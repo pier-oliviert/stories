@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/google/uuid"
-	"github.com/pothibo/stories/stories"
+	"github.com/convertkit/stories/stories"
 	"log"
 	"net/http"
 	"os"

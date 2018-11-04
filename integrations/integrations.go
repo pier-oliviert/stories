@@ -2,8 +2,8 @@ package integrations
 
 import (
 	"errors"
-	"github.com/pothibo/stories/integrations/scalyr"
-	"github.com/pothibo/stories/stories"
+	"github.com/convertkit/stories/integrations/scalyr"
+	"github.com/convertkit/stories/stories"
 	"net/http"
 )
 

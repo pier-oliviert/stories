@@ -8,7 +8,7 @@ type Story struct {
 	Severity  int
 	Message   string
 	Timestamp string
-	Data      map[string]string
+	Data      map[string]json.RawMessage
 }
 
 func NewStory(bytes []byte) (*Story, error) {
@@ -20,7 +20,7 @@ func NewStory(bytes []byte) (*Story, error) {
 	}
 
 	if story.Data == nil {
-		story.Data = make(map[string]string)
+		story.Data = make(map[string]json.RawMessage)
 	}
 
 	if story.Severity == 0 {

@@ -2,8 +2,8 @@ package main
 
 import (
 	"flag"
-	"github.com/pothibo/stories/integrations"
-	"github.com/pothibo/stories/stories"
+	"github.com/convertkit/stories/integrations"
+	"github.com/convertkit/stories/stories"
 	"log"
 	"net"
 	"os"
